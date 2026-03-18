@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Skew Slider</title>
+
+    <!-- Slider styles -->
+    <link rel="stylesheet" href="css/skew-slider.css">
+
+    <style>
+        /*
+         * Inline overrides for the standalone page.
+         * The CSS file handles all slider-component styles;
+         * these rules only affect the bare-bones page shell.
+         */
+        html, body {
+            overflow: hidden;   /* no page scroll – slider owns the viewport */
+        }
+    </style>
+</head>
+<body class="loading">
+
+<!-- ================================================================
+     SKEW SLIDER
+     To add / edit slides: duplicate a .skew-slider-item.slide block,
+     change the background-image URL, category text, and title lines.
+     ================================================================ -->
+<div class="skew-slider-area">
+
+    <!-- ---- Slides ---- -->
+    <div class="skew-slider-wrap">
+
+        <!-- Slide 1 -->
+        <div class="skew-slider-item slide">
+            <div class="slide__img"
+                 style="background-image: url('https://picsum.photos/seed/csl-arch/1920/1080')">
+            </div>
+            <div class="skew-slider-content">
+                <span>Digital Platform</span>
+                <h4><a href="#">Simple<br>Logistics</a></h4>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="skew-slider-item slide">
+            <div class="slide__img"
+                 style="background-image: url('https://picsum.photos/seed/csl-city/1920/1080')">
+            </div>
+            <div class="skew-slider-content">
+                <span>Digital Platform</span>
+                <h4><a href="#">Smart<br>Platform</a></h4>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="skew-slider-item slide">
+            <div class="slide__img"
+                 style="background-image: url('https://picsum.photos/seed/csl-interior/1920/1080')">
+            </div>
+            <div class="skew-slider-content">
+                <span>Branding</span>
+                <h4><a href="#">Royal<br>Benz</a></h4>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="skew-slider-item slide">
+            <div class="slide__img"
+                 style="background-image: url('https://picsum.photos/seed/csl-forest/1920/1080')">
+            </div>
+            <div class="skew-slider-content">
+                <span>Digital Platform</span>
+                <h4><a href="#">World's<br>Relays</a></h4>
+            </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="skew-slider-item slide">
+            <div class="slide__img"
+                 style="background-image: url('https://picsum.photos/seed/csl-abstract/1920/1080')">
+            </div>
+            <div class="skew-slider-content">
+                <span>Design</span>
+                <h4><a href="#">Bright<br>Captive</a></h4>
+            </div>
+        </div>
+
+    </div><!-- /.skew-slider-wrap -->
+
+
+    <!-- ---- Copyright / CTA (top centre) ---- -->
+    <div class="tp-portfolio-slider__copyright">
+        <p>Have a project in mind? <a href="#">Let's Talk.</a></p>
+    </div>
+
+    <!-- ---- Social links (left, reads bottom-to-top) ---- -->
+    <div class="tp-portfolio-slider__social">
+        <a href="#">Fb</a>
+        <a href="#">In</a>
+        <a href="#">Be</a>
+    </div>
+
+    <!-- ---- Prev / Next arrows (bottom) ---- -->
+    <div class="skew-slider-arrow slides-nav">
+        <button class="skew-slider-prev d-flex align-items-center">
+            <span class="icon-1">
+                <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 1L1 7L7 13" stroke="white" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <span class="slider-nav-text">Prev</span>
+        </button>
+
+        <button class="skew-slider-next d-flex align-items-center">
+            <span class="slider-nav-text">Next</span>
+            <span class="icon-2">
+                <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 13L7 7L1 1" stroke="white" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+    </div>
+
+    <!-- ---- Slide counter (right, with decorative lines) ---- -->
+    <div class="slides-numbers-wrap">
+        <div class="slides-numbers">
+            <span class="active text-1">01</span>
+            <span class="text-2">/</span>
+            <span class="text-3">05</span>
+        </div>
+    </div>
+
+</div><!-- /.skew-slider-area -->
+
+
+<!-- ================================================================
+     Scripts  (order matters)
+     ================================================================ -->
+
+<!-- GSAP core (free, CDN) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<!-- GSAP Observer plugin (free — wheel / touch / pointer) -->
+<script src="js/Observer.min.js"></script>
+<!-- imagesLoaded – waits for CSS background-image to load -->
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+<!-- Slider logic -->
+<script src="js/skew-slider-bundle.js"></script>
+
+</body>
+</html>

@@ -292,4 +292,32 @@
     letter-spacing: 1px;
     transition: opacity 0.3s;
 }
-.tp-portfolio-slider__social a:hover { opacity: 0.6; }
+/* ---------- CTA Button (upper right) ---------- */
+.skew-slider-cta {
+    position: absolute;
+    top: 40px;
+    right: 100px;
+    z-index: 99;
+}
+@media (max-width: 1399px) { .skew-slider-cta { right: 45px; } }
+@media (max-width: 767px)  { .skew-slider-cta { right: 20px; top: 20px; } }
+
+.skew-slider-cta__btn {
+    display: inline-block;
+    padding: 13px 26px;
+    color: var(--tp-common-white);
+    background: transparent;
+    border: 2px solid var(--tp-common-white);
+    border-radius: 15px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: 1;
+    white-space: nowrap;
+    transition: background 0.25s ease;
+}
+.skew-slider-cta__btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+}

@@ -169,6 +169,21 @@ class SkewSliderWidget extends \Elementor\Widget_Base {
             'default' => 'Next',
         ] );
 
+        $this->add_control( 'cta_text', [
+            'label'       => esc_html__( 'CTA Button Text (upper right)', 'cool-slide' ),
+            'type'        => \Elementor\Controls_Manager::TEXT,
+            'default'     => 'View All Listings',
+            'placeholder' => 'e.g. View All Listings',
+            'separator'   => 'before',
+        ] );
+        $this->add_control( 'cta_url', [
+            'label'         => esc_html__( 'CTA Button URL', 'cool-slide' ),
+            'type'          => \Elementor\Controls_Manager::URL,
+            'placeholder'   => 'https://yoursite.com/listings',
+            'show_external' => true,
+            'default'       => [ 'url' => '' ],
+        ] );
+
         $this->end_controls_section();
     }
 
@@ -182,6 +197,9 @@ class SkewSliderWidget extends \Elementor\Widget_Base {
         $socials      = $settings['social_links']   ?? [];
         $prev_text    = ! empty( $settings['prev_text'] ) ? $settings['prev_text'] : 'Prev';
         $next_text    = ! empty( $settings['next_text'] ) ? $settings['next_text'] : 'Next';
+        $cta_text     = $settings['cta_text']  ?? '';
+        $cta_href     = ! empty( $settings['cta_url']['url'] ) ? esc_url( $settings['cta_url']['url'] ) : '#';
+        $cta_target   = ! empty( $settings['cta_url']['is_external'] ) ? ' target="_blank" rel="noopener noreferrer"' : '';
         ?>
 
         <div class="skew-slider-area">
@@ -219,6 +237,15 @@ class SkewSliderWidget extends \Elementor\Widget_Base {
             <?php if ( $copyright ) : ?>
             <div class="tp-portfolio-slider__copyright">
                 <p class="tp-el-sec-text"><?php echo wp_kses_post( $copyright ); ?></p>
+            </div>
+            <?php endif; ?>
+
+            <!-- CTA Button (upper right) -->
+            <?php if ( $cta_text ) : ?>
+            <div class="skew-slider-cta">
+                <a href="<?php echo $cta_href; ?>"<?php echo $cta_target; ?> class="skew-slider-cta__btn">
+                    <?php echo esc_html( $cta_text ); ?>
+                </a>
             </div>
             <?php endif; ?>
 

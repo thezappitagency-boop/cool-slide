@@ -147,18 +147,26 @@ function initSkewSliders() {
             ScrollTrigger.create({
                 trigger: area,
                 start: 'top top',
-                // one full viewport-height of scroll per slide transition
-                end: `+=${(numSlides - 1) * window.innerHeight}`,
+                // One extra viewport AFTER the last slide so the last snap point
+                // lands at progress (N-1)/N, not 1.0 — leaving scroll room to
+                // release the pin after the final slide.
+                end: `+=${numSlides * window.innerHeight}`,
                 pin: true,
                 anticipatePin: 1,
-                // snap to exact slide boundaries
                 snap: {
-                    snapTo: 1 / (numSlides - 1),
+                    // Snap to 0, 1/N, 2/N … (N-1)/N — never reaches 1.0
+                    snapTo: (v) => Math.min(
+                        (numSlides - 1) / numSlides,
+                        Math.round(v * numSlides) / numSlides
+                    ),
                     duration: { min: 0.2, max: 0.45 },
                     ease: 'power1.inOut'
                 },
                 onUpdate(self) {
-                    const snap = Math.round(self.progress * (numSlides - 1));
+                    const snap = Math.min(
+                        numSlides - 1,
+                        Math.round(self.progress * numSlides)
+                    );
                     if (snap !== activeSnap) {
                         activeSnap = snap;
                         slideshow.navigateTo(snap);

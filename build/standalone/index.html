@@ -4,31 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creative Skew Slider</title>
-
-    <!-- Slider styles -->
     <link rel="stylesheet" href="css/skew-slider.css">
-
-    <style>
-        /*
-         * Inline overrides for the standalone page.
-         * The CSS file handles all slider-component styles;
-         * these rules only affect the bare-bones page shell.
-         */
-        html, body {
-            overflow: hidden;   /* no page scroll – slider owns the viewport */
-        }
-    </style>
 </head>
+<!--
+    body.loading hides the slider until images are preloaded.
+    The page is now scrollable — content above/below is just demo filler;
+    replace or remove as needed.
+-->
 <body class="loading">
 
-<!-- ================================================================
+<!-- ═══════════════════════════════════════════════════
+     DEMO SECTION ABOVE (replace with your real content)
+     ═══════════════════════════════════════════════════ -->
+<section class="demo-section demo-section--top">
+    <p>Scroll down to enter the slider &darr;</p>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
      SKEW SLIDER
-     To add / edit slides: duplicate a .skew-slider-item.slide block,
-     change the background-image URL, category text, and title lines.
-     ================================================================ -->
+     — pins when it hits the top of the viewport
+     — scrolls through all 5 slides
+     — releases to continue scrolling the page
+
+     To edit slides: change background-image URL,
+     category <span>, and <h4> title lines.
+     ═══════════════════════════════════════════════════ -->
 <div class="skew-slider-area">
 
-    <!-- ---- Slides ---- -->
+    <!-- Slides -->
     <div class="skew-slider-wrap">
 
         <!-- Slide 1 -->
@@ -88,20 +92,19 @@
 
     </div><!-- /.skew-slider-wrap -->
 
-
-    <!-- ---- Copyright / CTA (top centre) ---- -->
+    <!-- Copyright / CTA (top centre) -->
     <div class="tp-portfolio-slider__copyright">
         <p>Have a project in mind? <a href="#">Let's Talk.</a></p>
     </div>
 
-    <!-- ---- Social links (left, reads bottom-to-top) ---- -->
+    <!-- Social links (left, reads bottom-to-top) -->
     <div class="tp-portfolio-slider__social">
         <a href="#">Fb</a>
         <a href="#">In</a>
         <a href="#">Be</a>
     </div>
 
-    <!-- ---- Prev / Next arrows (bottom) ---- -->
+    <!-- Prev / Next arrows (bottom) -->
     <div class="skew-slider-arrow slides-nav">
         <button class="skew-slider-prev d-flex align-items-center">
             <span class="icon-1">
@@ -113,7 +116,6 @@
             </span>
             <span class="slider-nav-text">Prev</span>
         </button>
-
         <button class="skew-slider-next d-flex align-items-center">
             <span class="slider-nav-text">Next</span>
             <span class="icon-2">
@@ -126,7 +128,7 @@
         </button>
     </div>
 
-    <!-- ---- Slide counter (right, with decorative lines) ---- -->
+    <!-- Slide counter (right, with decorative lines) -->
     <div class="slides-numbers-wrap">
         <div class="slides-numbers">
             <span class="active text-1">01</span>
@@ -138,15 +140,22 @@
 </div><!-- /.skew-slider-area -->
 
 
-<!-- ================================================================
-     Scripts  (order matters)
-     ================================================================ -->
+<!-- ═══════════════════════════════════════════════════
+     DEMO SECTION BELOW (replace with your real content)
+     ═══════════════════════════════════════════════════ -->
+<section class="demo-section demo-section--bottom">
+    <p>Slider released &uarr; — rest of page continues here.</p>
+</section>
 
-<!-- GSAP core (free, CDN) -->
+
+<!-- ═══════════════════════════════════════════════════
+     Scripts  (order matters)
+     ═══════════════════════════════════════════════════ -->
+<!-- GSAP core (free) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<!-- GSAP Observer plugin (free — wheel / touch / pointer) -->
-<script src="js/Observer.min.js"></script>
-<!-- imagesLoaded – waits for CSS background-image to load -->
+<!-- ScrollTrigger — handles the pin + scroll-to-slide logic (free) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- imagesLoaded — waits for background images before revealing slider -->
 <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 <!-- Slider logic -->
 <script src="js/skew-slider-bundle.js"></script>

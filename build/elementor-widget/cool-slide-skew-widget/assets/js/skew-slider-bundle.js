@@ -1,7 +1,7 @@
 /*!
- * Cool Slide — Skew Slider Bundle v1.0.0
- * Bundled from: utils.js + slideshow.js + index.js (Agntix / cool-slide theme)
- * WordPress dependencies: gsap, gsap-observer, imagesloaded
+ * Cool Slide — Skew Slider Bundle v1.1.0
+ * Sticky-scroll edition: pins slider on entry, scrolls through all slides, then releases.
+ * Dependencies (load before this): gsap.min.js, ScrollTrigger.min.js, imagesloaded.pkgd.min.js
  */
 
 /* =====================================================================
@@ -39,8 +39,8 @@ class Slideshow {
         this.DOM.slides      = [...this.DOM.el.querySelectorAll('.slide')];
         this.DOM.slidesInner = this.DOM.slides.map(item => item.querySelector('.slide__img'));
         this.DOM.slideNumber = DOM_el.closest('.skew-slider-area')
-                               ? DOM_el.closest('.skew-slider-area').querySelector('.slides-numbers .active')
-                               : document.querySelector('.slides-numbers .active');
+            ? DOM_el.closest('.skew-slider-area').querySelector('.slides-numbers .active')
+            : document.querySelector('.slides-numbers .active');
 
         gsap.set(this.DOM.el, { perspective: 1000 });
         this.DOM.slides[this.current].classList.add('slide--current');
@@ -55,16 +55,35 @@ class Slideshow {
         if (this.isAnimating) return false;
         this.isAnimating = true;
 
-        const previous    = this.current;
-        this.current      = direction === NEXT
+        const previous = this.current;
+        this.current   = direction === NEXT
             ? (this.current < this.slidesTotal - 1 ? ++this.current : 0)
             : (this.current > 0 ? --this.current : this.slidesTotal - 1);
 
+        this._animateTo(previous, this.current, direction);
+    }
+
+    /**
+     * Jump directly to any slide index (used by ScrollTrigger).
+     * @param {number} targetIndex
+     */
+    navigateTo(targetIndex) {
+        if (targetIndex === this.current || this.isAnimating) return;
+        this.isAnimating = true;
+
+        const previous  = this.current;
+        this.current    = targetIndex;
+        const direction = targetIndex > previous ? NEXT : PREV;
+
+        this._animateTo(previous, this.current, direction);
+    }
+
+    _animateTo(from, to, direction) {
         this.updateSlideNumber();
 
-        const currentSlide  = this.DOM.slides[previous];
-        const upcomingSlide = this.DOM.slides[this.current];
-        const upcomingInner = this.DOM.slidesInner[this.current];
+        const currentSlide  = this.DOM.slides[from];
+        const upcomingSlide = this.DOM.slides[to];
+        const upcomingInner = this.DOM.slidesInner[to];
 
         gsap.timeline({
             defaults: { duration: 1.2, ease: 'power3.inOut' },
@@ -81,16 +100,9 @@ class Slideshow {
         .addLabel('start', 0)
         .to(currentSlide, { yPercent: -direction * 100 }, 'start')
         .fromTo(upcomingSlide, {
-            yPercent:  0,
-            autoAlpha: 0,
-            rotationX: 140,
-            scale:     0.1,
-            z:         -1000
+            yPercent: 0, autoAlpha: 0, rotationX: 140, scale: 0.1, z: -1000
         }, {
-            autoAlpha: 1,
-            rotationX: 0,
-            z:         0,
-            scale:     1
+            autoAlpha: 1, rotationX: 0, z: 0, scale: 1
         }, 'start+=0.1')
         .fromTo(upcomingInner, { scale: 1.8 }, { scale: 1 }, 'start+=0.17');
     }
@@ -108,31 +120,54 @@ class Slideshow {
 
 
 /* =====================================================================
-   index.js  – widget initialiser
+   index.js  – initialiser (sticky-scroll edition)
    ===================================================================== */
 
-/**
- * initialise one slider instance per .skew-slider-wrap on the page.
- * Called on DOMContentLoaded AND by the Elementor frontend hook so it
- * also works inside the Elementor page-builder editor.
- */
 function initSkewSliders() {
     document.querySelectorAll('.skew-slider-wrap').forEach(function (container) {
-        // Guard: skip if already initialised
         if (container._skewSliderInit) return;
         container._skewSliderInit = true;
 
-        const area     = container.closest('.skew-slider-area') || container.parentElement;
+        const area      = container.closest('.skew-slider-area') || container.parentElement;
         const slideshow = new Slideshow(container);
+        const numSlides = slideshow.slidesTotal;
 
-        const prevBtn  = area.querySelector('.skew-slider-prev');
-        const nextBtn  = area.querySelector('.skew-slider-next');
-
+        /* ── Prev / Next buttons ─────────────────────────────────── */
+        const prevBtn = area.querySelector('.skew-slider-prev');
+        const nextBtn = area.querySelector('.skew-slider-next');
         if (prevBtn) prevBtn.addEventListener('click', () => slideshow.prev());
         if (nextBtn) nextBtn.addEventListener('click', () => slideshow.next());
 
-        // Scroll / swipe navigation via GSAP Observer (free plugin)
-        if (typeof Observer !== 'undefined') {
+        /* ── Sticky-scroll via ScrollTrigger ─────────────────────── */
+        if (typeof ScrollTrigger !== 'undefined' && numSlides > 1) {
+            gsap.registerPlugin(ScrollTrigger);
+
+            let activeSnap = 0;
+
+            ScrollTrigger.create({
+                trigger: area,
+                start: 'top top',
+                // one full viewport-height of scroll per slide transition
+                end: `+=${(numSlides - 1) * window.innerHeight}`,
+                pin: true,
+                anticipatePin: 1,
+                // snap to exact slide boundaries
+                snap: {
+                    snapTo: 1 / (numSlides - 1),
+                    duration: { min: 0.2, max: 0.45 },
+                    ease: 'power1.inOut'
+                },
+                onUpdate(self) {
+                    const snap = Math.round(self.progress * (numSlides - 1));
+                    if (snap !== activeSnap) {
+                        activeSnap = snap;
+                        slideshow.navigateTo(snap);
+                    }
+                }
+            });
+
+        } else if (typeof Observer !== 'undefined') {
+            /* ── Fallback: wheel / touch (no ScrollTrigger available) ── */
             Observer.create({
                 target:     container,
                 type:       'wheel,touch,pointer',
@@ -143,7 +178,7 @@ function initSkewSliders() {
             });
         }
 
-        // Preload background images then reveal
+        /* ── Reveal after background images load ─────────────────── */
         preloadImages('.slide__img').then(() => {
             document.body.classList.remove('loading');
         });
@@ -158,7 +193,7 @@ if (document.readyState === 'loading') {
     initSkewSliders();
 }
 
-// Elementor editor: re-run when widget renders inside the panel
+// Elementor editor: re-run when widget renders in panel
 window.addEventListener('elementor/frontend/init', function () {
     if (!window.elementorFrontend || !window.elementorFrontend.hooks) return;
     window.elementorFrontend.hooks.addAction(

@@ -1,19 +1,13 @@
 /*!
- * Cool Slide — Skew Slider Bundle v1.0.0
- * Bundled from: utils.js + slideshow.js + index.js (Agntix / cool-slide theme)
- * Dependencies (loaded before this): gsap.min.js, Observer.min.js, imagesloaded.pkgd.min.js
+ * Cool Slide — Skew Slider Bundle v1.1.0
+ * Sticky-scroll edition: pins slider on entry, scrolls through all slides, then releases.
+ * Dependencies (load before this): gsap.min.js, ScrollTrigger.min.js, imagesloaded.pkgd.min.js
  */
 
 /* =====================================================================
    utils.js
    ===================================================================== */
 
-/**
- * Preload all background-image elements matching selector.
- * Uses imagesLoaded with { background: true } so it watches CSS backgrounds.
- * @param  {string} selector  CSS selector – default 'img'
- * @returns {Promise}
- */
 const preloadImages = (selector = 'img') => {
     return new Promise((resolve) => {
         imagesLoaded(document.querySelectorAll(selector), { background: true }, resolve);
@@ -29,10 +23,6 @@ const NEXT = 1;
 const PREV = -1;
 
 class Slideshow {
-    /**
-     * Holds references to DOM elements.
-     * @type {Object}
-     */
     DOM = {
         el: null,
         slides: null,
@@ -40,23 +30,19 @@ class Slideshow {
         slideNumber: null
     };
 
-    current      = 0;
-    slidesTotal  = 0;
-    isAnimating  = false;
+    current     = 0;
+    slidesTotal = 0;
+    isAnimating = false;
 
-    /**
-     * @param {HTMLElement} DOM_el – .skew-slider-wrap container
-     */
     constructor(DOM_el) {
         this.DOM.el          = DOM_el;
         this.DOM.slides      = [...this.DOM.el.querySelectorAll('.slide')];
         this.DOM.slidesInner = this.DOM.slides.map(item => item.querySelector('.slide__img'));
-        this.DOM.slideNumber = document.querySelector('.slides-numbers .active');
+        this.DOM.slideNumber = DOM_el.closest('.skew-slider-area')
+            ? DOM_el.closest('.skew-slider-area').querySelector('.slides-numbers .active')
+            : document.querySelector('.slides-numbers .active');
 
-        // Give the container a perspective for the 3-D rotationX effect
         gsap.set(this.DOM.el, { perspective: 1000 });
-
-        // Mark first slide as current
         this.DOM.slides[this.current].classList.add('slide--current');
         this.slidesTotal = this.DOM.slides.length;
         this.updateSlideNumber();
@@ -69,16 +55,35 @@ class Slideshow {
         if (this.isAnimating) return false;
         this.isAnimating = true;
 
-        const previous    = this.current;
-        this.current      = direction === NEXT
+        const previous = this.current;
+        this.current   = direction === NEXT
             ? (this.current < this.slidesTotal - 1 ? ++this.current : 0)
             : (this.current > 0 ? --this.current : this.slidesTotal - 1);
 
+        this._animateTo(previous, this.current, direction);
+    }
+
+    /**
+     * Jump directly to any slide index (used by ScrollTrigger).
+     * @param {number} targetIndex
+     */
+    navigateTo(targetIndex) {
+        if (targetIndex === this.current || this.isAnimating) return;
+        this.isAnimating = true;
+
+        const previous  = this.current;
+        this.current    = targetIndex;
+        const direction = targetIndex > previous ? NEXT : PREV;
+
+        this._animateTo(previous, this.current, direction);
+    }
+
+    _animateTo(from, to, direction) {
         this.updateSlideNumber();
 
-        const currentSlide  = this.DOM.slides[previous];
-        const upcomingSlide = this.DOM.slides[this.current];
-        const upcomingInner = this.DOM.slidesInner[this.current];
+        const currentSlide  = this.DOM.slides[from];
+        const upcomingSlide = this.DOM.slides[to];
+        const upcomingInner = this.DOM.slidesInner[to];
 
         gsap.timeline({
             defaults: { duration: 1.2, ease: 'power3.inOut' },
@@ -93,29 +98,13 @@ class Slideshow {
             }
         })
         .addLabel('start', 0)
-        // outgoing slide: fly up (or down)
-        .to(currentSlide, {
-            yPercent: -direction * 100
-        }, 'start')
-        // incoming slide: rotate from deep 3-D space into place
+        .to(currentSlide, { yPercent: -direction * 100 }, 'start')
         .fromTo(upcomingSlide, {
-            yPercent:  0,
-            autoAlpha: 0,
-            rotationX: 140,
-            scale:     0.1,
-            z:         -1000
+            yPercent: 0, autoAlpha: 0, rotationX: 140, scale: 0.1, z: -1000
         }, {
-            autoAlpha: 1,
-            rotationX: 0,
-            z:         0,
-            scale:     1
+            autoAlpha: 1, rotationX: 0, z: 0, scale: 1
         }, 'start+=0.1')
-        // image scales from oversized to fill
-        .fromTo(upcomingInner, {
-            scale: 1.8
-        }, {
-            scale: 1
-        }, 'start+=0.17');
+        .fromTo(upcomingInner, { scale: 1.8 }, { scale: 1 }, 'start+=0.17');
     }
 
     updateSlideNumber() {
@@ -131,50 +120,84 @@ class Slideshow {
 
 
 /* =====================================================================
-   index.js  (initialiser)
+   index.js  – initialiser (sticky-scroll edition)
    ===================================================================== */
 
-function initSkewSlider() {
-    const slidesContainer = document.querySelector('.skew-slider-wrap');
-    if (!slidesContainer) return;
+function initSkewSliders() {
+    document.querySelectorAll('.skew-slider-wrap').forEach(function (container) {
+        if (container._skewSliderInit) return;
+        container._skewSliderInit = true;
 
-    const slideshow = new Slideshow(slidesContainer);
+        const area      = container.closest('.skew-slider-area') || container.parentElement;
+        const slideshow = new Slideshow(container);
+        const numSlides = slideshow.slidesTotal;
 
-    const prevBtn = document.querySelector('.skew-slider-prev');
-    const nextBtn = document.querySelector('.skew-slider-next');
+        /* ── Prev / Next buttons ─────────────────────────────────── */
+        const prevBtn = area.querySelector('.skew-slider-prev');
+        const nextBtn = area.querySelector('.skew-slider-next');
+        if (prevBtn) prevBtn.addEventListener('click', () => slideshow.prev());
+        if (nextBtn) nextBtn.addEventListener('click', () => slideshow.next());
 
-    if (prevBtn) prevBtn.addEventListener('click', () => slideshow.prev());
-    if (nextBtn) nextBtn.addEventListener('click', () => slideshow.next());
+        /* ── Sticky-scroll via ScrollTrigger ─────────────────────── */
+        if (typeof ScrollTrigger !== 'undefined' && numSlides > 1) {
+            gsap.registerPlugin(ScrollTrigger);
 
-    // GSAP Observer – wheel / touch / pointer swipe support
-    if (typeof Observer !== 'undefined') {
-        Observer.create({
-            type:       'wheel,touch,pointer',
-            onDown:     () => slideshow.prev(),
-            onUp:       () => slideshow.next(),
-            wheelSpeed: -1,
-            tolerance:  10
+            let activeSnap = 0;
+
+            ScrollTrigger.create({
+                trigger: area,
+                start: 'top top',
+                // one full viewport-height of scroll per slide transition
+                end: `+=${(numSlides - 1) * window.innerHeight}`,
+                pin: true,
+                anticipatePin: 1,
+                // snap to exact slide boundaries
+                snap: {
+                    snapTo: 1 / (numSlides - 1),
+                    duration: { min: 0.2, max: 0.45 },
+                    ease: 'power1.inOut'
+                },
+                onUpdate(self) {
+                    const snap = Math.round(self.progress * (numSlides - 1));
+                    if (snap !== activeSnap) {
+                        activeSnap = snap;
+                        slideshow.navigateTo(snap);
+                    }
+                }
+            });
+
+        } else if (typeof Observer !== 'undefined') {
+            /* ── Fallback: wheel / touch (no ScrollTrigger available) ── */
+            Observer.create({
+                target:     container,
+                type:       'wheel,touch,pointer',
+                onDown:     () => slideshow.prev(),
+                onUp:       () => slideshow.next(),
+                wheelSpeed: -1,
+                tolerance:  10
+            });
+        }
+
+        /* ── Reveal after background images load ─────────────────── */
+        preloadImages('.slide__img').then(() => {
+            document.body.classList.remove('loading');
         });
-    }
-
-    // Wait for all background images, then show slider
-    preloadImages('.slide__img').then(() => {
-        document.body.classList.remove('loading');
     });
 }
 
 /* ── Boot ─────────────────────────────────────────────────────────── */
 
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initSkewSlider);
+    document.addEventListener('DOMContentLoaded', initSkewSliders);
 } else {
-    initSkewSlider();
+    initSkewSliders();
 }
 
-// Elementor editor: re-run when widget is rendered in the panel
-if (window.elementorFrontend && window.elementorFrontend.hooks) {
+// Elementor editor: re-run when widget renders in panel
+window.addEventListener('elementor/frontend/init', function () {
+    if (!window.elementorFrontend || !window.elementorFrontend.hooks) return;
     window.elementorFrontend.hooks.addAction(
         'frontend/element_ready/cool-slide-skew-slider.default',
-        () => initSkewSlider()
+        function () { initSkewSliders(); }
     );
-}
+});

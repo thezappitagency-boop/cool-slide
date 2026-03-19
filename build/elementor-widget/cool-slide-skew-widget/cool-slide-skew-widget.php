@@ -42,7 +42,7 @@ function cskw_register_assets() {
         );
     }
 
-    // GSAP Observer plugin (free — handles wheel / touch / pointer)
+    // GSAP Observer plugin (free — fallback when ScrollTrigger unavailable)
     if ( ! wp_script_is( 'gsap-observer', 'registered' ) ) {
         wp_register_script(
             'gsap-observer',
@@ -53,11 +53,22 @@ function cskw_register_assets() {
         );
     }
 
+    // GSAP ScrollTrigger plugin (free — powers the sticky-scroll-through-slides)
+    if ( ! wp_script_is( 'gsap-scrolltrigger', 'registered' ) ) {
+        wp_register_script(
+            'gsap-scrolltrigger',
+            'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js',
+            [ 'gsap' ],
+            '3.12.5',
+            true
+        );
+    }
+
     // Slider JS bundle
     wp_register_script(
         'cool-slide-skew-slider',
         CSKW_URL . 'assets/js/skew-slider-bundle.js',
-        [ 'gsap', 'gsap-observer', 'imagesloaded' ],
+        [ 'gsap', 'gsap-scrolltrigger', 'gsap-observer', 'imagesloaded' ],
         CSKW_VERSION,
         true          // load in footer
     );

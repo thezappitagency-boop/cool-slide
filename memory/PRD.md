@@ -38,8 +38,31 @@ B) A standalone HTML/CSS/JS stack
 - CSS custom properties for white/black + @font-face for ClashDisplay-Semibold
 - Responsive breakpoints: 1399/1199/991/767px
 
+## What Was Built – V2 (2026-03-23)
+
+### V2 – Blank / Shortcode Shell (preserves V1 completely)
+
+**Standalone:**
+- `/app/build/cool-slide-standalone-v2.zip` – open `standalone/index-v2.html`
+- Full-screen (no demo sections above/below); slides are blank background images
+- Add content per slide via `<div class="skew-slider-content">` or shortcode HTML
+- Navigation: chevron-up SVG (bottom-left = Prev) / chevron-down SVG (bottom-right = Next)
+- Same GSAP ScrollTrigger pin behaviour as V1
+
+**Elementor Plugin:**
+- `/app/build/cool-slide-skew-widget-v2.zip` (install like V1 — no conflicts)
+- Repeater fields: Background Image + Slide Content / Shortcode (textarea)
+- Shortcode is passed through `do_shortcode()` on the front end
+- Editor preview shows shortcode text inside a tinted label (shortcodes not executed in preview)
+- Navigation: chevron SVG icons; all other controls (copyright, social, CTA) identical to V1
+
+**V2 Key Files:**
+- `build/standalone/index-v2.html`
+- `build/elementor-widget/cool-slide-skew-widget-v2/cool-slide-skew-widget-v2.php`
+- `build/elementor-widget/cool-slide-skew-widget-v2/widgets/class-skew-slider-v2-widget.php`
+
 ## Backlog / Next Steps
 - [ ] Replace picsum placeholder images with real project images
-- [ ] Add keyboard arrow-key navigation
-- [ ] Optional: add autoplay with pause-on-hover
+- [ ] P2: Add keyboard arrow-key navigation (ArrowUp/ArrowDown)
+- [ ] P2: Add autoplay option with pause-on-hover
 - [ ] Optional: Style tab in Elementor widget (title size, content padding)

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Skew Slider – V2</title>
+    <link rel="stylesheet" href="css/skew-slider.css">
+    <style>
+        /* ═══════════════════════════════════════════════════
+           V2 OVERRIDES
+           • Chevron icon navigation (replaces text Prev/Next)
+           • Full-screen slider with no surrounding page chrome
+           ═══════════════════════════════════════════════════ */
+
+        /* Remove text from nav buttons — icons only */
+        .skew-slider-arrow button { gap: 0; }
+
+        /* Chevron icon sizing & transition */
+        .nav-chevron {
+            width: 44px;
+            height: 44px;
+            display: block;
+            transition: transform 0.35s ease;
+            /* Tint to white so the SVG matches the white UI */
+            filter: brightness(0) invert(1);
+        }
+
+        /* Hover nudge: up-arrow moves up, down-arrow moves down */
+        .skew-slider-prev:hover .nav-chevron { transform: translateY(-6px); }
+        .skew-slider-next:hover .nav-chevron { transform: translateY( 6px); }
+
+        /* ── Slide content placeholder ──────────────────────
+           The .skew-slider-content div is left out of the
+           markup below (slides are blank by default).
+           Paste your own HTML or shortcode output inside
+           a <div class="skew-slider-content"> element to
+           restore overlay text on any slide.
+           ─────────────────────────────────────────────────── */
+
+        /* ── Full-screen: no page sections above / below ─── */
+        html, body {
+            height: 100%;
+            /* Keep body scrollable so GSAP ScrollTrigger can
+               advance slides via scroll — do NOT set overflow:hidden */
+        }
+    </style>
+</head>
+
+<!--
+    V2 – blank/shortcode shell.
+    Slides contain only a background image; add your own content
+    (HTML, shortcode output, etc.) inside each slide as needed.
+
+    The slider pins to the viewport and scrolls through all slides
+    before releasing (same behaviour as V1).
+    Max scroll height is controlled by GSAP ScrollTrigger automatically.
+-->
+<body class="loading">
+
+<!-- ═══════════════════════════════════════════════════
+     SKEW SLIDER – V2
+     Full-screen, blank slides ready for your content.
+
+     HOW TO ADD CONTENT TO A SLIDE:
+       Insert a <div class="skew-slider-content"> block
+       directly inside any .skew-slider-item, e.g.:
+
+       <div class="skew-slider-content">
+           <span>Your Category</span>
+           <h4>Your Title</h4>
+           <!-- or any HTML / server-rendered shortcode output -->
+       </div>
+
+     NAVIGATION:
+       chevron-up   (bottom-left)  = previous slide
+       chevron-down (bottom-right) = next slide
+     ═══════════════════════════════════════════════════ -->
+<div class="skew-slider-area">
+
+    <!-- Slides ─────────────────────────────────────── -->
+    <div class="skew-slider-wrap">
+
+        <!-- Slide 1 ─ set background-image to your own URL, then add content below if needed -->
+        <div class="skew-slider-item slide">
+            <div class="slide__img"
+                 style="background-image: url('https://picsum.photos/seed/csl-arch/1920/1080')">
+            </div>
+            <!--
+                ADD YOUR CONTENT / SHORTCODE HERE
+                Example:
+                <div class="skew-slider-content">
+                    <span>Category Label</span>
+                    <h4><a href="#">Title Line One<br>Title Line Two</a></h4>
+                </div>
+            -->
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="skew-slider-item slide">
+            <div class="slide__img"
+                 style="background-image: url('https://picsum.photos/seed/csl-city/1920/1080')">
+            </div>
+            <!-- ADD YOUR CONTENT / SHORTCODE HERE -->
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="skew-slider-item slide">
+            <div class="slide__img"
+                 style="background-image: url('https://picsum.photos/seed/csl-interior/1920/1080')">
+            </div>
+            <!-- ADD YOUR CONTENT / SHORTCODE HERE -->
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="skew-slider-item slide">
+            <div class="slide__img"
+                 style="background-image: url('https://picsum.photos/seed/csl-forest/1920/1080')">
+            </div>
+            <!-- ADD YOUR CONTENT / SHORTCODE HERE -->
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="skew-slider-item slide">
+            <div class="slide__img"
+                 style="background-image: url('https://picsum.photos/seed/csl-abstract/1920/1080')">
+            </div>
+            <!-- ADD YOUR CONTENT / SHORTCODE HERE -->
+        </div>
+
+    </div><!-- /.skew-slider-wrap -->
+
+
+    <!-- Copyright / CTA line (top centre) ─────────── -->
+    <!-- Edit or remove this block as needed -->
+    <div class="tp-portfolio-slider__copyright">
+        <p>Have a project in mind? <a href="#">Let's Talk.</a></p>
+    </div>
+
+    <!-- CTA Button (upper right) ─────────────────────
+         Edit href and button text below              -->
+    <div class="skew-slider-cta">
+        <a href="YOUR-LINK-HERE" class="skew-slider-cta__btn">View All Listings</a>
+    </div>
+
+    <!-- Social links (left side, reads bottom-to-top) -->
+    <div class="tp-portfolio-slider__social">
+        <a href="#">Fb</a>
+        <a href="#">In</a>
+        <a href="#">Be</a>
+    </div>
+
+    <!-- Navigation: chevron-up = Prev (bottom-left)
+                     chevron-down = Next (bottom-right) -->
+    <div class="skew-slider-arrow slides-nav">
+        <button class="skew-slider-prev d-flex align-items-center"
+                aria-label="Previous slide">
+            <img src="img/chevron-up.svg"
+                 alt="Previous slide"
+                 class="nav-chevron">
+        </button>
+        <button class="skew-slider-next d-flex align-items-center"
+                aria-label="Next slide">
+            <img src="img/chevron-down.svg"
+                 alt="Next slide"
+                 class="nav-chevron">
+        </button>
+    </div>
+
+    <!-- Slide counter (right side, with decorative lines) -->
+    <div class="slides-numbers-wrap">
+        <div class="slides-numbers">
+            <span class="active text-1">01</span>
+            <span class="text-2">/</span>
+            <span class="text-3">05</span>
+        </div>
+    </div>
+
+</div><!-- /.skew-slider-area -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     Scripts  (order matters)
+     ═══════════════════════════════════════════════════ -->
+<!-- GSAP core (free) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<!-- ScrollTrigger — handles the pin + scroll-to-slide logic (free) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- imagesLoaded — waits for background images before revealing slider -->
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+<!-- Slider logic (shared with V1 — no changes needed) -->
+<script src="js/skew-slider-bundle.js"></script>
+
+</body>
+</html>

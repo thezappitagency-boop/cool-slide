@@ -1,0 +1,252 @@
+{
+  "version": "0.4",
+  "title": "IL \u2014 Single Listing Detail",
+  "type": "page",
+  "content": [
+
+    {
+      "id": "ilsec001",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "align_items": "stretch",
+        "padding": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": true },
+        "background_background": "classic",
+        "background_color": "#111111",
+        "_element_id": "il-hero",
+        "_css_classes": "il-section-hero"
+      },
+      "elements": [
+        {
+          "id": "ilwgt001",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class='il-hero-slider swiper' id='il-hero-swiper' style='position:relative;overflow:hidden;'><div class='swiper-wrapper'><div class='swiper-slide'><div class='il-hero-slide' style='background-color:#1a1a1a;min-height:85vh;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;position:relative;'><div class='il-hero-overlay' style='position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.5),transparent 30%,transparent 70%,rgba(0,0,0,.5));pointer-events:none;z-index:1;'></div><p style='color:rgba(255,255,255,.15);font-family:var(--font-label);letter-spacing:.2em;font-size:11px;text-transform:uppercase;position:relative;z-index:2;margin:0;'>[ Slide 1 \u2014 Replace bg with ACF image dynamic tag ]</p></div></div><div class='swiper-slide'><div class='il-hero-slide' style='background-color:#222222;min-height:85vh;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;position:relative;'><div class='il-hero-overlay' style='position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.5),transparent 30%,transparent 70%,rgba(0,0,0,.5));pointer-events:none;z-index:1;'></div><p style='color:rgba(255,255,255,.15);font-family:var(--font-label);letter-spacing:.2em;font-size:11px;text-transform:uppercase;position:relative;z-index:2;margin:0;'>[ Slide 2 \u2014 Replace bg with ACF image dynamic tag ]</p></div></div><div class='swiper-slide'><div class='il-hero-slide' style='background-color:#2a2a2a;min-height:85vh;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;position:relative;'><div class='il-hero-overlay' style='position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.5),transparent 30%,transparent 70%,rgba(0,0,0,.5));pointer-events:none;z-index:1;'></div><p style='color:rgba(255,255,255,.15);font-family:var(--font-label);letter-spacing:.2em;font-size:11px;text-transform:uppercase;position:relative;z-index:2;margin:0;'>[ Slide 3 \u2014 Replace bg with ACF image dynamic tag ]</p></div></div></div><div class='swiper-pagination il-hero-swiper-pagination' style='position:absolute;bottom:24px;left:0;right:0;z-index:10;text-align:center;'></div><div class='il-hero-ctas' style='position:absolute;bottom:40px;left:40px;z-index:10;display:flex;gap:12px;'><a href='#gallery' class='il-btn'><span>Gallery</span></a><a href='#contact' class='il-btn'><span>Learn More</span></a></div></div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+
+    {
+      "id": "ilsec002",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "boxed",
+        "flex_direction": "row",
+        "flex_wrap": "wrap",
+        "align_items": "flex-start",
+        "gap": { "unit": "px", "column": "60", "row": "60" },
+        "padding": { "unit": "px", "top": "80", "right": "60", "bottom": "80", "left": "60", "isLinked": false },
+        "_css_classes": "il-section-prop-info"
+      },
+      "elements": [
+        {
+          "id": "ilscl002",
+          "elType": "container",
+          "isInner": true,
+          "settings": {
+            "flex_direction": "column",
+            "align_items": "flex-start",
+            "width": { "unit": "%", "size": 46, "sizes": [] },
+            "_css_classes": "il-prop-left"
+          },
+          "elements": [
+            {
+              "id": "ilwgt002",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<div><div class='il-property-title-rule'></div><p style='font-family:var(--font-display);font-size:13px;font-weight:400;text-transform:uppercase;letter-spacing:.25em;color:var(--color-accent);margin:0 0 10px;'>Mazatl\u00e1n, Sinaloa</p><h1 class='il-property-title'>Casa Sunset Vista</h1><div style='display:grid;grid-template-columns:1fr 1fr;gap:20px 40px;margin:32px 0;'><div class='il-detail-item'><span>Bedrooms</span>4</div><div class='il-detail-item'><span>Bathrooms</span>3.5</div><div class='il-detail-item'><span>Price USD</span>$450,000</div><div class='il-detail-item'><span>Sq Meters</span>280 m\u00b2</div></div><a href='#contact' class='il-btn'><span>Schedule A Showing</span></a></div>"
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "ilscr002",
+          "elType": "container",
+          "isInner": true,
+          "settings": {
+            "flex_direction": "column",
+            "align_items": "flex-start",
+            "width": { "unit": "%", "size": 50, "sizes": [] },
+            "_css_classes": "il-prop-right"
+          },
+          "elements": [
+            {
+              "id": "ilwgt003",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<div><p class='il-body-text'>This stunning oceanfront property offers breathtaking Pacific views with direct beach access. Fully furnished and turnkey ready, the home features modern open-plan living, high-end kitchen finishes, and a rooftop terrace. <em>Replace with ACF property description dynamic field.</em></p><div class='il-accordion' style='margin-top:40px;'><div class='il-accordion-item'><button class='il-accordion-trigger'>Listing Information<span class='il-accordion-icon'></span></button><div class='il-accordion-panel'><div style='display:grid;grid-template-columns:1fr 1fr;gap:16px 40px;padding-bottom:8px;'><div class='il-detail-item' style='font-size:18px;'><span>Property Type</span>Single Family</div><div class='il-detail-item' style='font-size:18px;'><span>Year Built</span>2022</div><div class='il-detail-item' style='font-size:18px;'><span>Garage</span>2 Car</div><div class='il-detail-item' style='font-size:18px;'><span>Pool</span>Private</div><div class='il-detail-item' style='font-size:18px;'><span>HOA</span>$350 / mo</div><div class='il-detail-item' style='font-size:18px;'><span>MLS Status</span>Active</div></div></div></div><div class='il-accordion-item'><button class='il-accordion-trigger'>Location<span class='il-accordion-icon'></span></button><div class='il-accordion-panel'><div style='background:#f0f0f0;min-height:300px;display:flex;align-items:center;justify-content:center;border-radius:4px;'><p style='font-family:var(--font-label);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#bbb;margin:0;'>[ Map Placeholder \u2014 embed iframe here ]</p></div></div></div></div><div style='display:flex;align-items:center;gap:16px;margin-top:32px;'><span style='font-family:var(--font-label);font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(0,0,0,.4);'>Share:</span><a href='#' class='il-share-link' aria-label='Facebook' style='color:var(--color-text);text-decoration:none;font-family:var(--font-label);font-size:12px;letter-spacing:.1em;'>FB</a><a href='#' class='il-share-link' aria-label='Instagram' style='color:var(--color-text);text-decoration:none;font-family:var(--font-label);font-size:12px;letter-spacing:.1em;'>IG</a><a href='#' class='il-share-link' aria-label='Twitter' style='color:var(--color-text);text-decoration:none;font-family:var(--font-label);font-size:12px;letter-spacing:.1em;'>X</a></div></div>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "ilsec003",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "align_items": "stretch",
+        "padding": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": true },
+        "background_background": "classic",
+        "background_color": "#111111",
+        "_element_id": "il-video",
+        "_css_classes": "il-section-video"
+      },
+      "elements": [
+        {
+          "id": "ilwgt004",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div style='position:relative;min-height:520px;display:flex;align-items:center;justify-content:center;overflow:hidden;'><div style='width:100%;min-height:520px;background-color:#1a1a1a;display:flex;align-items:center;justify-content:center;'><p style='font-family:var(--font-label);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.12);margin:0;'>[ Video Thumbnail \u2014 Replace with ACF image dynamic tag ]</p></div><button aria-label='Play featured video' style='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;border:2px solid rgba(255,255,255,.5);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:5;'><svg width='22' height='22' viewBox='0 0 24 24' fill='white' xmlns='http://www.w3.org/2000/svg'><polygon points='5 3 19 12 5 21 5 3'/></svg></button><div style='position:absolute;right:48px;top:50%;transform:translateY(-50%) rotate(-90deg);transform-origin:center;white-space:nowrap;pointer-events:none;'><h2 class='il-title is-accent' style='font-size:60px;margin:0;'><span><i></i>Featured</span>Video</h2></div></div><p style='font-family:var(--font-label);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.2);text-align:center;padding:12px;margin:0;'>[ Developer note: hide this section in Elementor > Advanced > Responsive > Visibility if not needed ]</p>"
+          },
+          "elements": []
+        }
+      ]
+    },
+
+    {
+      "id": "ilsec004",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "boxed",
+        "flex_direction": "column",
+        "align_items": "stretch",
+        "padding": { "unit": "px", "top": "80", "right": "60", "bottom": "80", "left": "60", "isLinked": false },
+        "_element_id": "gallery",
+        "_css_classes": "il-section-gallery"
+      },
+      "elements": [
+        {
+          "id": "ilwgt005",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div style='margin-bottom:48px;'><h2 class='il-title is-accent'><span><i></i>Property</span>Gallery</h2></div><div class='il-gallery-grid' style='display:grid;grid-template-columns:repeat(4,1fr);gap:6px;'><a href='#' class='il-gallery-item'><div style='background:#d8d8d8;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;'><p style='font-family:var(--font-label);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#aaa;margin:0;'>Photo 1</p></div></a><a href='#' class='il-gallery-item'><div style='background:#c8c8c8;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;'><p style='font-family:var(--font-label);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#aaa;margin:0;'>Photo 2</p></div></a><a href='#' class='il-gallery-item'><div style='background:#d8d8d8;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;'><p style='font-family:var(--font-label);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#aaa;margin:0;'>Photo 3</p></div></a><a href='#' class='il-gallery-item'><div style='background:#c8c8c8;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;'><p style='font-family:var(--font-label);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#aaa;margin:0;'>Photo 4</p></div></a></div><p style='font-family:var(--font-label);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(0,0,0,.2);margin-top:16px;text-align:center;'>[ Init lightbox via Magnific Popup in main.js: $(&quot;.il-gallery-item&quot;).magnificPopup({type:&quot;image&quot;,gallery:{enabled:true}}) ]</p>"
+          },
+          "elements": []
+        }
+      ]
+    },
+
+    {
+      "id": "ilsec005",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "boxed",
+        "flex_direction": "column",
+        "align_items": "center",
+        "padding": { "unit": "px", "top": "100", "right": "60", "bottom": "100", "left": "60", "isLinked": false },
+        "background_background": "classic",
+        "background_color": "#000000",
+        "_element_id": "contact",
+        "_css_classes": "il-section-contact il-contact-section"
+      },
+      "elements": [
+        {
+          "id": "ilwgt006",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div style='max-width:640px;margin:0 auto;text-align:center;'><h2 class='il-title is-white' style='margin-bottom:56px;'><span><i></i>Schedule</span>A Showing</h2></div>"
+          },
+          "elements": []
+        },
+        {
+          "id": "ilwgt007",
+          "elType": "widget",
+          "widgetType": "shortcode",
+          "settings": {
+            "shortcode": "[contact-form-7 id=\"REPLACE_WITH_CF7_ID\" title=\"Schedule A Showing\"]"
+          },
+          "elements": []
+        }
+      ]
+    },
+
+    {
+      "id": "ilsec006",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "row",
+        "flex_wrap": "wrap",
+        "align_items": "stretch",
+        "padding": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": true },
+        "_css_classes": "il-section-similar il-similar-row"
+      },
+      "elements": [
+        {
+          "id": "ilscl006",
+          "elType": "container",
+          "isInner": true,
+          "settings": {
+            "flex_direction": "column",
+            "align_items": "flex-start",
+            "justify_content": "space-between",
+            "width": { "unit": "%", "size": 37, "sizes": [] },
+            "min_height": { "unit": "px", "size": 480, "sizes": [] },
+            "padding": { "unit": "px", "top": "80", "right": "60", "bottom": "80", "left": "60", "isLinked": false },
+            "background_background": "classic",
+            "background_color": "#000000",
+            "_css_classes": "il-similar-left"
+          },
+          "elements": [
+            {
+              "id": "ilwgt008",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<div style='display:flex;flex-direction:column;height:100%;justify-content:space-between;min-height:320px;'><div style='writing-mode:vertical-rl;transform:rotate(180deg);display:inline-block;'><h2 class='il-title is-white' style='font-size:72px;line-height:.9;margin:0;'><span><i></i>Similar</span>Listings</h2></div><div style='display:flex;flex-direction:column;gap:12px;margin-top:48px;'><a href='/listings' class='il-btn'><span>View All Listings</span></a><a href='#contact' class='il-btn'><span>Contact Agent</span></a></div></div>"
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "ilscr006",
+          "elType": "container",
+          "isInner": true,
+          "settings": {
+            "flex_direction": "column",
+            "align_items": "stretch",
+            "justify_content": "center",
+            "width": { "unit": "%", "size": 63, "sizes": [] },
+            "padding": { "unit": "px", "top": "60", "right": "48", "bottom": "60", "left": "48", "isLinked": false },
+            "_css_classes": "il-similar-right"
+          },
+          "elements": [
+            {
+              "id": "ilwgt009",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<div class='swiper il-similar-swiper' id='il-similar-swiper'><div class='swiper-wrapper'><div class='swiper-slide'><div class='il-property-card'><div style='background:#e8e8e8;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden;'><p style='font-family:var(--font-label);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#aaa;margin:0;'>Property Image</p></div><div style='padding:16px 0 0;'><h3 class='il-property-title' style='font-size:30px;margin-bottom:4px;'>Casa Placeholder</h3><p style='font-family:var(--font-label);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(0,0,0,.4);margin:4px 0 14px;'>El Centro, Mazatl\u00e1n</p><div style='display:flex;gap:24px;'><div class='il-detail-item' style='font-size:17px;'><span>Beds</span>3</div><div class='il-detail-item' style='font-size:17px;'><span>Baths</span>2</div><div class='il-detail-item' style='font-size:17px;'><span>Price</span>$380k</div></div></div></div></div><div class='swiper-slide'><div class='il-property-card'><div style='background:#d8d8d8;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden;'><p style='font-family:var(--font-label);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#aaa;margin:0;'>Property Image</p></div><div style='padding:16px 0 0;'><h3 class='il-property-title' style='font-size:30px;margin-bottom:4px;'>Villa Cerritos</h3><p style='font-family:var(--font-label);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(0,0,0,.4);margin:4px 0 14px;'>Cerritos, Mazatl\u00e1n</p><div style='display:flex;gap:24px;'><div class='il-detail-item' style='font-size:17px;'><span>Beds</span>4</div><div class='il-detail-item' style='font-size:17px;'><span>Baths</span>3</div><div class='il-detail-item' style='font-size:17px;'><span>Price</span>$520k</div></div></div></div></div><div class='swiper-slide'><div class='il-property-card'><div style='background:#e8e8e8;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden;'><p style='font-family:var(--font-label);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#aaa;margin:0;'>Property Image</p></div><div style='padding:16px 0 0;'><h3 class='il-property-title' style='font-size:30px;margin-bottom:4px;'>Penthouse Marina</h3><p style='font-family:var(--font-label);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(0,0,0,.4);margin:4px 0 14px;'>Marina, Mazatl\u00e1n</p><div style='display:flex;gap:24px;'><div class='il-detail-item' style='font-size:17px;'><span>Beds</span>2</div><div class='il-detail-item' style='font-size:17px;'><span>Baths</span>2</div><div class='il-detail-item' style='font-size:17px;'><span>Price</span>$295k</div></div></div></div></div></div><div class='swiper-pagination il-similar-swiper-pagination' style='margin-top:24px;position:relative;bottom:auto;text-align:left;'></div></div>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    }
+
+  ],
+  "page_settings": {}
+}

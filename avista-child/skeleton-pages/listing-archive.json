@@ -1,0 +1,113 @@
+{
+  "version": "0.4",
+  "title": "IL \u2014 All Listings Archive",
+  "type": "page",
+  "content": [
+
+    {
+      "id": "arsec001",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "boxed",
+        "flex_direction": "column",
+        "align_items": "flex-start",
+        "padding": { "unit": "px", "top": "100", "right": "60", "bottom": "60", "left": "60", "isLinked": false },
+        "_element_id": "il-archive-header",
+        "_css_classes": "il-section-archive-header"
+      },
+      "elements": [
+        {
+          "id": "arwgt001",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div><h1 class='il-title is-accent'><span><i></i>Mazatl\u00e1n Real Estate</span>All Listings</h1><p class='il-body-text' style='max-width:560px;margin-top:28px;'>Browse our curated collection of premium real estate in Mazatl\u00e1n, Sinaloa. From oceanfront estates to urban condos and investment properties. <em>Replace with ACF or Elementor dynamic tag for the archive subtitle.</em></p></div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+
+    {
+      "id": "arsec002",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "align_items": "stretch",
+        "padding": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": true },
+        "background_background": "classic",
+        "background_color": "#f5f5f5",
+        "_element_id": "il-filter-bar",
+        "_css_classes": "il-section-filter"
+      },
+      "elements": [
+        {
+          "id": "arwgt002",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class='il-filter-bar' style='padding:24px 60px;'><div class='il-filter-row' style='display:flex;align-items:center;gap:16px;flex-wrap:wrap;max-width:1280px;margin:0 auto;'><select class='il-filter-select' name='neighborhood' style='font-family:var(--font-display);font-size:18px;text-transform:uppercase;letter-spacing:.05em;background:transparent;border:none;border-bottom:1px solid rgba(0,0,0,.25);padding:8px 0;color:var(--color-text);outline:none;cursor:pointer;min-width:180px;'><option value=''>All Neighborhoods</option><option value='centro'>El Centro</option><option value='marina'>Marina Mazatl\u00e1n</option><option value='cerritos'>Cerritos</option><option value='old-mazatlan'>Old Mazatl\u00e1n</option><option value='zona-dorada'>Zona Dorada</option></select><select class='il-filter-select' name='beds' style='font-family:var(--font-display);font-size:18px;text-transform:uppercase;letter-spacing:.05em;background:transparent;border:none;border-bottom:1px solid rgba(0,0,0,.25);padding:8px 0;color:var(--color-text);outline:none;cursor:pointer;min-width:140px;'><option value=''>Beds: Any</option><option value='1'>1+</option><option value='2'>2+</option><option value='3'>3+</option><option value='4'>4+</option><option value='5'>5+</option></select><div style='display:flex;align-items:center;gap:8px;'><input type='number' class='il-filter-input' name='price_min' placeholder='Min $' style='font-family:var(--font-display);font-size:18px;text-transform:uppercase;letter-spacing:.05em;background:transparent;border:none;border-bottom:1px solid rgba(0,0,0,.25);padding:8px 0;color:var(--color-text);outline:none;width:110px;' /><span style='font-family:var(--font-display);font-size:18px;color:rgba(0,0,0,.3);'>\u2014</span><input type='number' class='il-filter-input' name='price_max' placeholder='Max $' style='font-family:var(--font-display);font-size:18px;text-transform:uppercase;letter-spacing:.05em;background:transparent;border:none;border-bottom:1px solid rgba(0,0,0,.25);padding:8px 0;color:var(--color-text);outline:none;width:110px;' /></div><button type='button' class='il-btn' id='il-filter-submit'><span>Search Listings</span></button></div></div><p style='font-family:var(--font-label);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(0,0,0,.25);text-align:center;padding:8px;margin:0;'>[ Wire filter functionality to WP_Query or plugin (FacetWP, SearchWP) in Phase 2 ]</p>"
+          },
+          "elements": []
+        }
+      ]
+    },
+
+    {
+      "id": "arsec003",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "boxed",
+        "flex_direction": "column",
+        "align_items": "stretch",
+        "padding": { "unit": "px", "top": "60", "right": "60", "bottom": "60", "left": "60", "isLinked": false },
+        "_element_id": "il-listings-grid",
+        "_css_classes": "il-section-grid"
+      },
+      "elements": [
+        {
+          "id": "arwgt003",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class='il-listings-grid' style='display:grid;grid-template-columns:repeat(3,1fr);gap:40px 32px;'><div class='il-property-card'><a href='#' class='il-property-card-image' style='display:block;overflow:hidden;'><div style='background:#e0e0e0;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;transition:transform .5s;'><p style='font-family:var(--font-label);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#bbb;margin:0;'>Property Image</p></div></a><div class='il-property-card-info' style='padding:20px 0 0;'><h3 class='il-property-title' style='font-size:32px;margin-bottom:4px;'>Casa Placeholder</h3><p style='font-family:var(--font-label);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(0,0,0,.4);margin:4px 0 14px;'>El Centro, Mazatl\u00e1n</p><div style='display:flex;gap:24px;'><div class='il-detail-item' style='font-size:18px;'><span>Beds</span>3</div><div class='il-detail-item' style='font-size:18px;'><span>Baths</span>2</div><div class='il-detail-item' style='font-size:18px;'><span>Price</span>$380k</div></div></div></div><div class='il-property-card'><a href='#' class='il-property-card-image' style='display:block;overflow:hidden;'><div style='background:#d8d8d8;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;transition:transform .5s;'><p style='font-family:var(--font-label);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#bbb;margin:0;'>Property Image</p></div></a><div class='il-property-card-info' style='padding:20px 0 0;'><h3 class='il-property-title' style='font-size:32px;margin-bottom:4px;'>Villa Cerritos</h3><p style='font-family:var(--font-label);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(0,0,0,.4);margin:4px 0 14px;'>Cerritos, Mazatl\u00e1n</p><div style='display:flex;gap:24px;'><div class='il-detail-item' style='font-size:18px;'><span>Beds</span>4</div><div class='il-detail-item' style='font-size:18px;'><span>Baths</span>3</div><div class='il-detail-item' style='font-size:18px;'><span>Price</span>$520k</div></div></div></div><div class='il-property-card'><a href='#' class='il-property-card-image' style='display:block;overflow:hidden;'><div style='background:#e0e0e0;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;transition:transform .5s;'><p style='font-family:var(--font-label);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#bbb;margin:0;'>Property Image</p></div></a><div class='il-property-card-info' style='padding:20px 0 0;'><h3 class='il-property-title' style='font-size:32px;margin-bottom:4px;'>Penthouse Marina</h3><p style='font-family:var(--font-label);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(0,0,0,.4);margin:4px 0 14px;'>Marina, Mazatl\u00e1n</p><div style='display:flex;gap:24px;'><div class='il-detail-item' style='font-size:18px;'><span>Beds</span>2</div><div class='il-detail-item' style='font-size:18px;'><span>Baths</span>2</div><div class='il-detail-item' style='font-size:18px;'><span>Price</span>$295k</div></div></div></div><div class='il-property-card'><a href='#' class='il-property-card-image' style='display:block;overflow:hidden;'><div style='background:#d8d8d8;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;transition:transform .5s;'><p style='font-family:var(--font-label);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#bbb;margin:0;'>Property Image</p></div></a><div class='il-property-card-info' style='padding:20px 0 0;'><h3 class='il-property-title' style='font-size:32px;margin-bottom:4px;'>Casa Dorada</h3><p style='font-family:var(--font-label);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(0,0,0,.4);margin:4px 0 14px;'>Zona Dorada, Mazatl\u00e1n</p><div style='display:flex;gap:24px;'><div class='il-detail-item' style='font-size:18px;'><span>Beds</span>5</div><div class='il-detail-item' style='font-size:18px;'><span>Baths</span>4</div><div class='il-detail-item' style='font-size:18px;'><span>Price</span>$875k</div></div></div></div><div class='il-property-card'><a href='#' class='il-property-card-image' style='display:block;overflow:hidden;'><div style='background:#e0e0e0;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;transition:transform .5s;'><p style='font-family:var(--font-label);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#bbb;margin:0;'>Property Image</p></div></a><div class='il-property-card-info' style='padding:20px 0 0;'><h3 class='il-property-title' style='font-size:32px;margin-bottom:4px;'>Loft Hist\u00f3rico</h3><p style='font-family:var(--font-label);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(0,0,0,.4);margin:4px 0 14px;'>Old Mazatl\u00e1n</p><div style='display:flex;gap:24px;'><div class='il-detail-item' style='font-size:18px;'><span>Beds</span>1</div><div class='il-detail-item' style='font-size:18px;'><span>Baths</span>1</div><div class='il-detail-item' style='font-size:18px;'><span>Price</span>$165k</div></div></div></div><div class='il-property-card'><a href='#' class='il-property-card-image' style='display:block;overflow:hidden;'><div style='background:#d8d8d8;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;transition:transform .5s;'><p style='font-family:var(--font-label);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#bbb;margin:0;'>Property Image</p></div></a><div class='il-property-card-info' style='padding:20px 0 0;'><h3 class='il-property-title' style='font-size:32px;margin-bottom:4px;'>Residencia Pacifico</h3><p style='font-family:var(--font-label);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(0,0,0,.4);margin:4px 0 14px;'>Cerritos, Mazatl\u00e1n</p><div style='display:flex;gap:24px;'><div class='il-detail-item' style='font-size:18px;'><span>Beds</span>3</div><div class='il-detail-item' style='font-size:18px;'><span>Baths</span>2.5</div><div class='il-detail-item' style='font-size:18px;'><span>Price</span>$430k</div></div></div></div></div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+
+    {
+      "id": "arsec004",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "boxed",
+        "flex_direction": "row",
+        "align_items": "center",
+        "justify_content": "center",
+        "gap": { "unit": "px", "column": "24", "row": "0" },
+        "padding": { "unit": "px", "top": "60", "right": "60", "bottom": "60", "left": "60", "isLinked": false },
+        "_element_id": "il-pagination",
+        "_css_classes": "il-section-pagination"
+      },
+      "elements": [
+        {
+          "id": "arwgt004",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class='il-pagination' style='display:flex;align-items:center;justify-content:center;gap:24px;width:100%;'><a href='#' class='il-btn' aria-label='Previous page'><span>\u2190 Previous</span></a><span style='font-family:var(--font-label);font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(0,0,0,.4);'>Page 1 of 1</span><a href='#' class='il-btn' aria-label='Next page'><span>Next \u2192</span></a></div><p style='font-family:var(--font-label);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(0,0,0,.2);text-align:center;margin-top:16px;width:100%;'>[ Replace pagination with WP paginate_links() or plugin output ]</p>"
+          },
+          "elements": []
+        }
+      ]
+    }
+
+  ],
+  "page_settings": {}
+}

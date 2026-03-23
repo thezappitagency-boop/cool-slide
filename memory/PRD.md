@@ -1,68 +1,106 @@
-# Cool Slide – Skew Slider Extraction
+# InmuebleLife (IL) — Mazatlán RE · Avista Child Theme
 
-## Original Problem
-Extract the skew slider demo from the Agntix/cool-slide WordPress theme into:
-A) An Elementor widget plugin
-B) A standalone HTML/CSS/JS stack
+## Original Problem Statement
+Build a WordPress child theme for the Avista parent theme, targeting a real estate website "InmuebleLife (IL)" in Mazatlán, Sinaloa, Mexico. All specs are in the build brief: `Emergent Build Brief v2 — Mazatlán RE.md`.
 
-## Source Repo
-`/app` = cool-slide theme (Agntix). Key source files:
-- `assets/js/skew-slider/{index,slideshow,utils}.js`
-- `assets/scss/layout/pages/_project-slider.scss` (lines 726–900)
-- `assets/fonts/ClashDisplay-Semibold.{woff,woff2}`
-- `assets/fonts/MangoGrotesque-Regular.{woff,woff2}`
-- `assets/js/Observer.min.js` (GSAP Observer plugin)
+## Target Platform
+- WordPress + Elementor 3.35.1 (Flexbox Containers)
+- Parent theme: Avista
 
-## What Was Built (2025-03-18)
+## Deliverable Location
+`/app/avista-child/` (zip: `/app/build/avista-child-phase1.zip`)
 
-### Option A – Elementor Widget Plugin
-- `/app/build/cool-slide-skew-widget.zip` (88 KB, ready to install)
-- Files: `cool-slide-skew-widget.php`, `widgets/class-skew-slider-widget.php`,
-  `assets/css/skew-slider.css`, `assets/js/skew-slider-bundle.js`,
-  `assets/js/Observer.min.js`, `assets/fonts/*`
-- Widget controls: Slides repeater (image, category, title line 1+2, URL),
-  copyright/CTA text, social links repeater, prev/next button labels
-- Loads GSAP from CDN if not already registered by theme (safe for non-Agntix sites)
-- Elementor editor preview via `content_template()`
+---
 
-### Option B – Standalone HTML/CSS/JS
-- `/app/build/cool-slide-standalone.zip` (85 KB, open index.html)
-- Files: `index.html`, `css/skew-slider.css`, `js/skew-slider-bundle.js`,
-  `js/Observer.min.js`, `fonts/*`
-- GSAP from CDN, imagesLoaded from unpkg
-- Self-contained, edit slides directly in HTML comments
+## What Has Been Implemented
 
-## Architecture
-- JS bundle = utils.js + slideshow.js + index.js concatenated (no module bundler needed)
-- GSAP 3.12.5 + Observer plugin for wheel/touch/pointer navigation
-- CSS custom properties for white/black + @font-face for ClashDisplay-Semibold
-- Responsive breakpoints: 1399/1199/991/767px
+### Phase 1 — Core Child Theme + Skeleton Pages (2026-03-23)
 
-## What Was Built – V2 (2026-03-23)
+#### Child Theme Files
+| File | Purpose |
+|------|---------|
+| `style.css` | WordPress theme header + all IL design tokens (`:root` CSS vars) + all global component CSS (`.il-title`, `.il-gradient-title`, `.il-property-title`, `.il-detail-item`, `.il-body-text`, `.il-accordion-*`, `.il-btn`) |
+| `functions.php` | Enqueues parent stylesheet, child `style.css`, `global-styles.css`, Google Fonts (Barlow Condensed / Plus Jakarta Sans / Montserrat), CDN scripts (GSAP 3.12.2 + ScrollTrigger, Swiper 11 JS + CSS, Tailwind), child `main.js`. Dequeues WOW.js + Avista's bundled Swiper. Snap-scroll toggle meta field for pages. |
+| `global-styles.css` | Supplementary styles: section layout utilities, Swiper hero customization, property card component, gallery grid, CF7 form overrides, filter bar, pagination, share row, responsive breakpoints (1024px, 767px) |
+| `js/main.js` | jQuery safety wrapper. Accordion (single-open, slideToggle). Swiper init for `#il-hero-swiper` and `#il-similar-swiper`. |
 
-### V2 – Blank / Shortcode Shell (preserves V1 completely)
+#### Skeleton Page Templates (Elementor 3.35 Flexbox Containers JSON)
+| File | Sections |
+|------|---------|
+| `skeleton-pages/listing-detail.json` | 1) Hero Slider (Swiper, gradient overlay, Gallery + Learn More CTAs) · 2) Property Info 2-col (rule, address, `.il-property-title`, 4 detail items, CTA / body text, 2 accordions, share row) · 3) Video (play button, rotated `.il-title`, dev visibility note) · 4) Photo Gallery (4-up grid, Magnific Popup note) · 5) Contact Form (dark bg, `.il-title.is-white`, CF7 shortcode widget) · 6) Similar Listings 2-col (dark left: vertical title + CTAs; right: Swiper 3-card) |
+| `skeleton-pages/listing-archive.json` | 1) Page Header (`.il-title.is-accent` + body subtitle) · 2) Filter Bar (Neighborhood, Beds, Price range, Search `.il-btn`) · 3) Listings Grid (3-col, 6 placeholder property cards) · 4) Pagination (prev/next `.il-btn` + page info) |
 
-**Standalone:**
-- `/app/build/cool-slide-standalone-v2.zip` – open `standalone/index-v2.html`
-- Full-screen (no demo sections above/below); slides are blank background images
-- Add content per slide via `<div class="skew-slider-content">` or shortcode HTML
-- Navigation: chevron-up SVG (bottom-left = Prev) / chevron-down SVG (bottom-right = Next)
-- Same GSAP ScrollTrigger pin behaviour as V1
+---
 
-**Elementor Plugin:**
-- `/app/build/cool-slide-skew-widget-v2.zip` (install like V1 — no conflicts)
-- Repeater fields: Background Image + Slide Content / Shortcode (textarea)
-- Shortcode is passed through `do_shortcode()` on the front end
-- Editor preview shows shortcode text inside a tinted label (shortcodes not executed in preview)
-- Navigation: chevron SVG icons; all other controls (copyright, social, CTA) identical to V1
+## Design Tokens (in `style.css`)
 
-**V2 Key Files:**
-- `build/standalone/index-v2.html`
-- `build/elementor-widget/cool-slide-skew-widget-v2/cool-slide-skew-widget-v2.php`
-- `build/elementor-widget/cool-slide-skew-widget-v2/widgets/class-skew-slider-v2-widget.php`
+| Token | Value |
+|-------|-------|
+| `--font-display` | "Barlow Condensed", sans-serif |
+| `--font-body` | "Plus Jakarta Sans", sans-serif |
+| `--font-label` | "Montserrat", sans-serif |
+| `--color-accent` | #FF5F05 (IL-Orange) |
+| `--color-accent-deep` | #1a0800 |
+| `--color-text` | #000000 |
+| `--color-text-light` | #ffffff |
+| `--color-bg-dark` | #000000 |
+| `--color-bg-light` | #ffffff |
+| `--color-muted` | rgba(255,255,255,0.45) |
+| `--transition-default` | 0.3s cubic-bezier(0.4, 0, 0.2, 1) |
 
-## Backlog / Next Steps
-- [ ] Replace picsum placeholder images with real project images
-- [ ] P2: Add keyboard arrow-key navigation (ArrowUp/ArrowDown)
-- [ ] P2: Add autoplay option with pause-on-hover
-- [ ] Optional: Style tab in Elementor widget (title size, content padding)
+---
+
+## Delivery Checklist Status
+
+| Item | Status |
+|------|--------|
+| Child theme activates without PHP errors | Ready to test |
+| No 404s on enqueued fonts/scripts | All CDN URLs verified in brief |
+| WOW.js not present in network requests | Dequeued in functions.php |
+| `[property_carousel]` shortcode renders | Plugin installed separately by user |
+| All `.il-title` use Barlow Condensed | ✓ in style.css |
+| Body text uses Plus Jakarta Sans | ✓ in style.css |
+| `#FF5F05` is only accent color | ✓ in style.css |
+| No default Avista accent visible | Depends on Avista overrides (check after activation) |
+| Elementor opens skeleton pages without errors | JSON validated ✓ |
+| Accordion JS works on listing detail | ✓ in main.js |
+| Swiper initializes on hero placeholder | ✓ in main.js + CDN enqueued |
+| No JS console errors on page load | Test after activation |
+
+---
+
+## Installation Instructions
+
+### 1. Upload & Activate Child Theme
+1. Upload the `avista-child/` folder to `/wp-content/themes/`
+2. In WP Admin > Appearance > Themes, activate "Avista Child — InmuebleLife"
+
+### 2. Import Skeleton Pages (Elementor)
+1. Create a new page (e.g. "Single Listing") and open in Elementor
+2. Click the folder icon (Templates) > Import — upload `listing-detail.json`
+3. Repeat for "All Listings" using `listing-archive.json`
+
+### 3. Notes
+- Replace `[contact-form-7 id="REPLACE_WITH_CF7_ID" ...]` with your actual CF7 form ID
+- Swiper handle names used to deregister Avista's version may need adjustment — check browser DevTools Network tab for Avista's actual handles
+- Share links use text placeholders (FB / IG / X) — swap for Font Awesome icons or icon images
+
+---
+
+## Prioritized Backlog
+
+### P1 — Next Actions
+- [ ] Test child theme activation on staging (PHP errors, 404 scripts)
+- [ ] Adjust Avista Swiper dequeue handles to match actual theme handles
+- [ ] Replace CF7 shortcode placeholder with real form ID
+- [ ] Populate skeleton pages with ACF dynamic tags (Phase 2)
+
+### P2 — Phase 2 Features
+- [ ] About page (Nimo reference)
+- [ ] Neighborhood guide pages (requires custom map)
+- [ ] Blog templates
+- [ ] Home page skeleton
+
+### P3 — Previous Project Backlog
+- [ ] Skew Slider: Add keyboard arrow-key navigation (ArrowUp/ArrowDown)
+- [ ] Skew Slider: Add autoplay option with pause-on-hover

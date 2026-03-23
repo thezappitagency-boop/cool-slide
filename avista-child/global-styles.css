@@ -1,0 +1,613 @@
+/**
+ * Avista Child — InmuebleLife
+ * global-styles.css
+ *
+ * Supplementary global styles loaded in addition to style.css.
+ * Covers: section layout utilities, Swiper hero overrides,
+ * property card component, gallery grid, CF7 form styling,
+ * filter bar, pagination, share row, and responsive overrides.
+ */
+
+/* ============================================================
+   SECTION SPACING UTILITIES
+   ============================================================ */
+
+.il-section {
+  padding: 80px 60px;
+}
+
+.il-section--flush {
+  padding: 0;
+}
+
+.il-section--dark {
+  background-color: var(--color-bg-dark);
+  color:            var(--color-text-light);
+}
+
+.il-section--dark .il-body-text,
+.il-section--dark .il-detail-item {
+  color: var(--color-text-light);
+}
+
+.il-section--dark .il-detail-item > span {
+  color: var(--color-muted);
+}
+
+.il-section-inner {
+  max-width: 1280px;
+  margin:    0 auto;
+}
+
+/* ============================================================
+   HERO SLIDER
+   ============================================================ */
+
+.il-hero-slider {
+  position:   relative;
+  width:      100%;
+  min-height: 85vh;
+  overflow:   hidden;
+}
+
+.il-hero-slider .swiper-slide {
+  position: relative;
+  overflow: hidden;
+}
+
+.il-hero-slide {
+  width:              100%;
+  min-height:         85vh;
+  background-size:    cover;
+  background-position: center;
+  background-repeat:  no-repeat;
+  display:            flex;
+  align-items:        center;
+  justify-content:    center;
+}
+
+.il-hero-overlay {
+  position:   absolute;
+  inset:      0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.5) 0%,
+    transparent 30%,
+    transparent 70%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  pointer-events: none;
+  z-index:        1;
+}
+
+.il-hero-ctas {
+  position: absolute;
+  bottom:   32px;
+  left:     32px;
+  z-index:  10;
+  display:  flex;
+  gap:      12px;
+}
+
+/* Swiper pagination dots override */
+.il-hero-slider .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.5);
+  opacity:    1;
+}
+.il-hero-slider .swiper-pagination-bullet-active {
+  background: var(--color-accent);
+}
+
+/* ============================================================
+   PROPERTY CARD
+   (Used in archive grid + similar listings slider)
+   ============================================================ */
+
+.il-property-card {
+  display:        flex;
+  flex-direction: column;
+  height:         100%;
+}
+
+.il-property-card-image {
+  display:    block;
+  overflow:   hidden;
+  position:   relative;
+}
+
+.il-property-card-image img,
+.il-property-card-image > div {
+  width:      100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display:    block;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.il-property-card:hover .il-property-card-image img,
+.il-property-card:hover .il-property-card-image > div {
+  transform: scale(1.04);
+}
+
+.il-property-card-info {
+  padding:    20px 0 0;
+}
+
+.il-property-card-location {
+  font-family:    var(--font-label);
+  font-size:      11px;
+  font-weight:    500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color:          rgba(0, 0, 0, 0.45);
+  margin:         4px 0 14px;
+}
+
+.il-property-card-details {
+  display: flex;
+  gap:     24px;
+}
+
+.il-property-card-details .il-detail-item {
+  font-size: 18px;
+}
+
+/* ============================================================
+   LISTINGS GRID (Archive)
+   ============================================================ */
+
+.il-listings-grid {
+  display:               grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:                   40px 32px;
+}
+
+/* ============================================================
+   PROPERTY INFO — TWO COLUMN LAYOUT
+   ============================================================ */
+
+.il-prop-info-row {
+  display:   flex;
+  gap:       60px;
+  max-width: 1280px;
+  margin:    0 auto;
+  padding:   80px 60px;
+}
+
+.il-prop-info-left {
+  width:          48%;
+  flex-shrink:    0;
+  display:        flex;
+  flex-direction: column;
+  gap:            0;
+}
+
+.il-prop-info-right {
+  flex:           1;
+  display:        flex;
+  flex-direction: column;
+}
+
+.il-detail-items-grid {
+  display:               grid;
+  grid-template-columns: 1fr 1fr;
+  gap:                   20px 40px;
+  margin:                32px 0;
+}
+
+/* ============================================================
+   ACCORDION SPECS GRID (inside accordion panel)
+   ============================================================ */
+
+.il-specs-grid {
+  display:               grid;
+  grid-template-columns: 1fr 1fr;
+  gap:                   16px 40px;
+}
+
+/* ============================================================
+   SHARE ROW
+   ============================================================ */
+
+.il-share-row {
+  display:     flex;
+  align-items: center;
+  gap:         16px;
+  margin-top:  32px;
+}
+
+.il-share-label {
+  font-family:    var(--font-label);
+  font-size:      11px;
+  font-weight:    500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color:          rgba(0, 0, 0, 0.45);
+}
+
+.il-share-link {
+  color:      var(--color-text);
+  font-size:  18px;
+  transition: color var(--transition-default);
+  line-height: 1;
+}
+
+.il-share-link:hover {
+  color:           var(--color-accent);
+  text-decoration: none;
+}
+
+/* ============================================================
+   GALLERY GRID
+   ============================================================ */
+
+.il-gallery-grid {
+  display:               grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:                   6px;
+}
+
+.il-gallery-item {
+  display:    block;
+  overflow:   hidden;
+  position:   relative;
+}
+
+.il-gallery-item img,
+.il-gallery-item > div {
+  width:      100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display:    block;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.il-gallery-item:hover img,
+.il-gallery-item:hover > div {
+  transform: scale(1.06);
+}
+
+/* ============================================================
+   VIDEO SECTION
+   ============================================================ */
+
+.il-video-section {
+  position:   relative;
+  overflow:   hidden;
+}
+
+.il-video-title-aside {
+  position:        absolute;
+  right:           48px;
+  top:             50%;
+  transform:       translateY(-50%) rotate(-90deg);
+  transform-origin: center center;
+  white-space:     nowrap;
+}
+
+.il-video-play-btn {
+  position:        absolute;
+  top:             50%;
+  left:            50%;
+  transform:       translate(-50%, -50%);
+  width:           72px;
+  height:          72px;
+  border-radius:   50%;
+  border:          2px solid rgba(255, 255, 255, 0.6);
+  background:      transparent;
+  cursor:          pointer;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  transition:      border-color var(--transition-default), background var(--transition-default);
+  z-index:         5;
+}
+
+.il-video-play-btn:hover {
+  border-color: var(--color-accent);
+  background:   rgba(255, 95, 5, 0.12);
+}
+
+/* ============================================================
+   CONTACT SECTION (dark)
+   ============================================================ */
+
+.il-contact-section {
+  background-color: var(--color-bg-dark);
+  padding:          100px 60px;
+  text-align:       center;
+}
+
+/* CF7 field overrides */
+.il-contact-section .wpcf7-form input[type="text"],
+.il-contact-section .wpcf7-form input[type="email"],
+.il-contact-section .wpcf7-form input[type="tel"],
+.il-contact-section .wpcf7-form textarea {
+  font-family:      var(--font-display);
+  font-size:        20px;
+  font-style:       italic;
+  text-transform:   uppercase;
+  letter-spacing:   0.08em;
+  background:       transparent;
+  border:           none;
+  border-bottom:    1px solid rgba(255, 255, 255, 0.3);
+  border-radius:    0;
+  color:            var(--color-text-light);
+  padding:          12px 0;
+  width:            100%;
+  outline:          none;
+  transition:       border-color var(--transition-default);
+}
+
+.il-contact-section .wpcf7-form input[type="text"]:focus,
+.il-contact-section .wpcf7-form input[type="email"]:focus,
+.il-contact-section .wpcf7-form input[type="tel"]:focus,
+.il-contact-section .wpcf7-form textarea:focus {
+  border-bottom-color: var(--color-accent);
+}
+
+.il-contact-section .wpcf7-form input::placeholder,
+.il-contact-section .wpcf7-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.il-contact-section .wpcf7-form input[type="submit"] {
+  font-family:                var(--font-display);
+  font-size:                  16px;
+  font-weight:                400;
+  letter-spacing:             0.3em;
+  text-transform:             uppercase;
+  color:                      var(--color-text-light);
+  background:                 var(--color-accent);
+  height:                     43px;
+  padding:                    0 32px;
+  border:                     0;
+  border-bottom-right-radius: 12px;
+  cursor:                     pointer;
+  margin-top:                 24px;
+  transition:                 background-color var(--transition-default);
+}
+
+.il-contact-section .wpcf7-form input[type="submit"]:hover {
+  background-color: var(--color-accent-deep);
+}
+
+/* ============================================================
+   SIMILAR LISTINGS — SWIPER
+   ============================================================ */
+
+.il-similar-swiper {
+  overflow: visible;
+}
+
+.il-similar-swiper .swiper-slide {
+  height: auto;
+}
+
+/* ============================================================
+   FILTER BAR (Archive)
+   ============================================================ */
+
+.il-filter-bar {
+  background-color: #f5f5f5;
+  padding:          24px 60px;
+}
+
+.il-filter-row {
+  display:     flex;
+  align-items: center;
+  gap:         16px;
+  flex-wrap:   wrap;
+  max-width:   1280px;
+  margin:      0 auto;
+}
+
+.il-filter-select,
+.il-filter-input {
+  font-family:    var(--font-display);
+  font-size:      18px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background:     transparent;
+  border:         none;
+  border-bottom:  1px solid rgba(0, 0, 0, 0.25);
+  padding:        8px 0;
+  color:          var(--color-text);
+  outline:        none;
+  cursor:         pointer;
+  min-width:      160px;
+  transition:     border-color var(--transition-default);
+}
+
+.il-filter-select:focus,
+.il-filter-input:focus {
+  border-bottom-color: var(--color-accent);
+}
+
+.il-filter-price {
+  display:     flex;
+  align-items: center;
+  gap:         8px;
+}
+
+.il-filter-separator {
+  font-family: var(--font-display);
+  font-size:   18px;
+  color:       rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================================
+   PAGINATION
+   ============================================================ */
+
+.il-pagination {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             24px;
+  padding:         60px 0;
+}
+
+.il-pagination-info {
+  font-family:    var(--font-label);
+  font-size:      12px;
+  font-weight:    500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color:          rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================================
+   PAGE HEADER (Archive)
+   ============================================================ */
+
+.il-archive-header {
+  padding:    100px 60px 60px;
+  max-width:  1280px;
+  margin:     0 auto;
+}
+
+.il-archive-header .il-body-text {
+  max-width:  560px;
+  margin-top: 28px;
+}
+
+/* ============================================================
+   SIMILAR LISTINGS SECTION LAYOUT
+   ============================================================ */
+
+.il-similar-row {
+  display:   flex;
+  gap:       0;
+  min-height: 500px;
+}
+
+.il-similar-left {
+  width:           37%;
+  flex-shrink:     0;
+  background:      var(--color-bg-dark);
+  display:         flex;
+  flex-direction:  column;
+  align-items:     flex-start;
+  justify-content: space-between;
+  padding:         80px 60px;
+}
+
+.il-similar-right {
+  flex:    1;
+  padding: 60px 48px;
+  overflow: hidden;
+}
+
+/* ============================================================
+   RESPONSIVE — TABLET (≤1024px)
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .il-title {
+    font-size: 72px;
+  }
+
+  .il-gradient-title {
+    font-size: 80px;
+  }
+
+  .il-listings-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 24px;
+  }
+
+  .il-prop-info-row {
+    flex-direction: column;
+    gap: 48px;
+    padding: 60px 40px;
+  }
+
+  .il-prop-info-left {
+    width: 100%;
+  }
+
+  .il-similar-row {
+    flex-direction: column;
+  }
+
+  .il-similar-left {
+    width: 100%;
+    min-height: auto;
+    padding: 60px 40px;
+  }
+
+  .il-similar-right {
+    padding: 48px 40px;
+  }
+
+  .il-filter-bar {
+    padding: 24px 40px;
+  }
+
+  .il-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE (≤767px)
+   ============================================================ */
+
+@media (max-width: 767px) {
+  .il-title {
+    font-size: 52px;
+  }
+
+  .il-gradient-title {
+    font-size: 56px;
+  }
+
+  .il-property-title {
+    font-size: 36px;
+  }
+
+  .il-accordion-trigger {
+    font-size: 22px;
+  }
+
+  .il-section {
+    padding: 60px 24px;
+  }
+
+  .il-listings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .il-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .il-detail-items-grid,
+  .il-specs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .il-filter-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .il-hero-ctas {
+    left: 20px;
+    bottom: 20px;
+    flex-direction: column;
+  }
+
+  .il-prop-info-row {
+    padding: 48px 24px;
+  }
+
+  .il-contact-section {
+    padding: 80px 24px;
+  }
+
+  .il-archive-header {
+    padding: 60px 24px 40px;
+  }
+}

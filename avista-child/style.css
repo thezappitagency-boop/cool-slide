@@ -1,0 +1,300 @@
+/*
+ Theme Name:   Avista Child — InmuebleLife
+ Theme URI:    https://inmuebleslife.com
+ Description:  Avista child theme for InmuebleLife Mazatlán real estate platform. Enforces IL design tokens, global component styles, and controlled asset enqueuing.
+ Author:       InmuebleLife
+ Template:     avista
+ Version:      1.0.0
+ Text Domain:  avista-child
+*/
+
+/* ============================================================
+   DESIGN TOKENS — GLOBAL
+   ============================================================ */
+
+:root {
+  /* Typography */
+  --font-display: "Barlow Condensed", sans-serif;
+  --font-body:    "Plus Jakarta Sans", sans-serif;
+  --font-label:   "Montserrat", sans-serif;
+
+  /* Brand Colors */
+  --color-accent:      #FF5F05;
+  --color-accent-deep: #1a0800;
+  --color-text:        #000000;
+  --color-text-light:  #ffffff;
+  --color-bg-dark:     #000000;
+  --color-bg-light:    #ffffff;
+  --color-muted:       rgba(255, 255, 255, 0.45);
+
+  /* Transitions */
+  --transition-default: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+body {
+  font-family:              var(--font-body);
+  font-size:                16px;
+  font-weight:              400;
+  color:                    var(--color-text);
+  -webkit-font-smoothing:   antialiased;
+  -moz-osx-font-smoothing:  grayscale;
+}
+
+/* ============================================================
+   .il-title
+   ============================================================ */
+
+.il-title {
+  font-family:    var(--font-display);
+  font-size:      100px;
+  font-weight:    100;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height:    0.9;
+  color:          var(--color-text);
+  margin:         0;
+}
+
+.il-title.is-accent {
+  color: var(--color-accent);
+}
+
+.il-title.is-white {
+  color: var(--color-text-light);
+}
+
+/* Label + horizontal rule inside .il-title */
+.il-title > span {
+  display:        block;
+  font-family:    var(--font-label);
+  font-size:      12px;
+  font-weight:    500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color:          inherit;
+  margin-bottom:  10px;
+}
+
+.il-title > span > i {
+  display:          inline-block;
+  width:            36px;
+  height:           1px;
+  background-color: currentColor;
+  vertical-align:   middle;
+  margin-right:     10px;
+  font-style:       normal;
+}
+
+/* ============================================================
+   .il-gradient-title
+   ============================================================ */
+
+.il-gradient-title {
+  font-family:              var(--font-display);
+  font-size:                120px;
+  font-weight:              500;
+  text-transform:           uppercase;
+  line-height:              0.8;
+  letter-spacing:           0.02em;
+  background:               linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-deep) 100%);
+  -webkit-background-clip:  text;
+  -webkit-text-fill-color:  transparent;
+  background-clip:          text;
+  margin:                   0;
+}
+
+/* ============================================================
+   .il-property-title
+   ============================================================ */
+
+.il-property-title {
+  font-family:              var(--font-display);
+  font-size:                50px;
+  font-weight:              500;
+  letter-spacing:           0.02em;
+  line-height:              1.05;
+  background:               linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-deep) 100%);
+  -webkit-background-clip:  text;
+  -webkit-text-fill-color:  transparent;
+  background-clip:          text;
+  margin:                   0 0 12px;
+}
+
+.il-property-title-rule {
+  display:          block;
+  width:            56px;
+  height:           3px;
+  background-color: var(--color-accent);
+  margin-bottom:    18px;
+}
+
+/* ============================================================
+   .il-detail-item
+   ============================================================ */
+
+.il-detail-item {
+  font-family:    var(--font-display);
+  font-size:      25px;
+  color:          var(--color-text);
+  line-height:    1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.il-detail-item > span {
+  display:        block;
+  font-family:    var(--font-label);
+  font-size:      10px;
+  font-weight:    500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color:          rgba(0, 0, 0, 0.45);
+  margin-bottom:  3px;
+}
+
+/* ============================================================
+   .il-body-text
+   ============================================================ */
+
+.il-body-text {
+  font-family:    var(--font-body);
+  font-size:      16px;
+  font-weight:    300;
+  line-height:    1.9;
+  letter-spacing: 0.025em;
+  color:          var(--color-text);
+}
+
+/* ============================================================
+   .il-accordion
+   ============================================================ */
+
+.il-accordion {
+  width: 100%;
+}
+
+.il-accordion-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.il-accordion-trigger {
+  font-family:     var(--font-display);
+  font-size:       30px;
+  font-weight:     300;
+  text-transform:  uppercase;
+  letter-spacing:  0.1em;
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  width:           100%;
+  background:      transparent;
+  border:          none;
+  padding:         20px 0;
+  cursor:          pointer;
+  color:           var(--color-text);
+  transition:      color var(--transition-default);
+  text-align:      left;
+  line-height:     1;
+}
+
+.il-accordion-trigger:hover {
+  color: var(--color-accent);
+}
+
+.il-accordion-item.is-open > .il-accordion-trigger {
+  color: var(--color-accent);
+}
+
+/* Plus / minus icon */
+.il-accordion-icon {
+  position:   relative;
+  display:    flex;
+  align-items:     center;
+  justify-content: center;
+  width:      28px;
+  height:     28px;
+  flex-shrink: 0;
+}
+
+.il-accordion-icon::before,
+.il-accordion-icon::after {
+  content:          '';
+  display:          block;
+  position:         absolute;
+  width:            16px;
+  height:           2px;
+  background-color: currentColor;
+  transition:       transform var(--transition-default), opacity var(--transition-default);
+}
+
+.il-accordion-icon::after {
+  transform: rotate(90deg);
+}
+
+.il-accordion-item.is-open .il-accordion-icon::after {
+  transform: rotate(0deg);
+  opacity:   0;
+}
+
+.il-accordion-panel {
+  display:  none;
+  padding:  0 0 28px;
+  overflow: hidden;
+}
+
+/* ============================================================
+   .il-btn
+   ============================================================ */
+
+.il-btn {
+  position:        relative;
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  font-family:     var(--font-display);
+  font-size:       16px;
+  font-weight:     400;
+  letter-spacing:  0.3em;
+  text-transform:  uppercase;
+  color:           var(--color-text-light);
+  background:      var(--color-accent);
+  height:          43px;
+  padding:         0 28px;
+  border:          0;
+  overflow:        hidden;
+  border-bottom-right-radius: 12px;
+  cursor:          pointer;
+  text-decoration: none;
+  white-space:     nowrap;
+  transition:      color var(--transition-default);
+}
+
+.il-btn::after {
+  content:          '';
+  position:         absolute;
+  inset:            0;
+  background-color: var(--color-accent-deep);
+  width:            0;
+  transition:       width var(--transition-default);
+  z-index:          0;
+}
+
+.il-btn:hover::after {
+  width: 100%;
+}
+
+.il-btn > span,
+.il-btn > * {
+  position: relative;
+  z-index:  1;
+}
+
+.il-btn:hover,
+.il-btn:focus {
+  color:           var(--color-text-light);
+  text-decoration: none;
+}
